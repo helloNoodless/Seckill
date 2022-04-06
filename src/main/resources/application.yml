@@ -1,0 +1,47 @@
+spring:
+  redis:
+    connect-timeout: 10000ms
+    host: 192.168.56.133
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        # ���������  Ĭ��8
+        max-active: 1024
+        max-wait: 10000ms
+        # ����������
+        max-idle: 200
+        min-idle: 5
+  thymeleaf:
+    # �رջ���
+    cache: false
+  datasource:
+    # 5.7���Ұ汾��mysql��û�е��µ�.cj��
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=Asia/Shanghai
+    username: root
+    password: 1234
+    # springboot�Դ������ӳ�
+    hikari:
+      pool-name: DateHikariCP
+      minimum-idle: 5
+      # ���д�����ʱ��  Ĭ��600000��10minutes��
+      idle-timeout: 180000
+      #���������
+      maximum-pool-size: 10
+      # �����ӳط��ص������Զ��ύ
+      auto-commit: true
+      # ���������ʱ�� Ĭ��1800000��30���ӣ�
+      max-lifetime: 1800000
+      # ���ӳ�ʱʱ�� Ĭ��30s
+      connection-timeout: 30000
+      # ���������Ƿ���õĲ�ѯ���
+      connection-test-query: SELECT 1
+# Mybatis-plus ����
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package: com.xxxx.seckill.pojo
+## Mybatis SQL ��ӡ
+logging:
+  level:
+    com.xxxx.seckill.mapper: debug
